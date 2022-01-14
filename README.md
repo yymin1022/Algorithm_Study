@@ -1,1 +1,1 @@
-# Repository for BOJ/Programmers Algorithm Problem Solving
+# BOJ/Programmers Algorithm Problem Solving Code

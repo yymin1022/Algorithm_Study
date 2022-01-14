@@ -7,11 +7,11 @@ def solution(answers):
     scores = [0, 0, 0]
     
     for i in range(len(answers)):
-        if answers[i] == stu1[i%len(stu1)]:
+        if answers[i] == stu1[i % len(stu1)]:
             scores[0] += 1
-        if answers[i] == stu2[i%len(stu2)]:
+        if answers[i] == stu2[i % len(stu2)]:
             scores[1] += 1
-        if answers[i] == stu3[i%len(stu3)]:
+        if answers[i] == stu3[i % len(stu3)]:
             scores[2] += 1
         
     scoreMax = max(scores)
