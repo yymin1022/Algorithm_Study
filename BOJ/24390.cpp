@@ -10,38 +10,29 @@ int main(){
     string inputStr;
     cin >> inputStr;
 
-    int M, S;
-	std::stringstream tempM(inputStr.substr(0, 2));
-	tempM >> M;
-    std::stringstream tempS(inputStr.substr(3, 2));
-	tempS >> S;
+    int M = stoi(inputStr.substr(0, 2));
+    int S = stoi(inputStr.substr(3, 2));
 
+    bool isStartBtn = false;
     int count = 0;
-    int isStart = 0;
-    while(M != 0 || S != 0){
-        if(M == 0){
-            if(S >= 30){
-                count++;
-                S -= 30;
-                isStart = 1;
-            }
 
-            while(S > 0){
-                count++;
-                S -= 10;
-            }
-        }else if(M < 10){
-            count += M;
-            M = 0;
-        }else{
-            while(M >= 10){
-                count++;
-                M -= 10;
-            }
-        }
+    if(S >= 30){
+        count++;
+        S -= 30;
+
+        isStartBtn = true;
     }
 
-    if(!isStart){
+    if(M >= 10){
+        count += M / 10;
+        M %= 10;
+    }
+    
+    count += M;
+
+    count += S / 10;
+
+    if(!isStartBtn){
         count++;
     }
 
