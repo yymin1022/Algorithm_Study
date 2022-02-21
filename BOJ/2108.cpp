@@ -9,50 +9,46 @@ int main(){
 
     int N;
     cin >> N;
-    
-    int maxValue = -4001;
-    int minValue = 4001;
-    double sum = 0;
-    vector<int> numCount(8001, 0);
-    vector<int> nums;
 
+    int sum = 0;
+    vector<int> cnt(8001, 0);
+    vector<int> nums;
     for(int i = 0; i < N; i++){
         int input;
         cin >> input;
 
-        numCount[input + 4000]++;
+        cnt[input + 4000]++;
         nums.push_back(input);
         sum += input;
-
-        if(input > maxValue){
-            maxValue = input;
-        }
-        if(input < minValue){
-            minValue = input;
-        }
     }
-
-    int temp = 0;
-    int maxCount = *max_element(numCount.begin(), numCount.end());
-    int maxCountNum;
-    for(int i = 0; i < 8001; i++){
-        if(temp == 2){
-            break;
-        }
-        if(numCount[i] == maxCount){
-            maxCountNum = i;
-            temp++;
-        }
-    }
-
-    maxCountNum -= 4000;
 
     sort(nums.begin(), nums.end());
 
-    cout << round((double)(sum / N)) << "\n";
-    cout << nums[N / 2] << "\n";
-    cout << maxCountNum << "\n";
-    cout << maxValue - minValue << "\n";
-    
+    bool mostFound = false;
+    int avg = round((float)sum / N);
+    int center = nums[N / 2];
+    int mostCount = -5000;
+    int mostValue = 0;
+    int range = nums.back() - nums.front();
+
+    for(int i = 0; i < 8001; i++){
+        if(cnt[i] == mostCount){
+            if(mostFound){
+                mostCount = cnt[i];
+                mostFound = false;
+                mostValue = i - 4000;
+            }
+        }else if(cnt[i] > mostCount){
+            mostCount = cnt[i];
+            mostFound = true;
+            mostValue = i - 4000;
+        }
+    }
+
+    cout << avg << "\n";
+    cout << center << "\n";
+    cout << mostValue << "\n";
+    cout << range << "\n";
+
     return 0;
 }
