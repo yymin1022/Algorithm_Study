@@ -6,19 +6,7 @@ bool isVirus[101];
 int computer[101][101];
 int cnt, N, M;
 
-void dfs(int idx){
-    if(idx == N){
-        return;
-    }
-
-    for(int i = 0; i < N; i++){
-        if(computer[idx][i] && !isVirus[i]){
-            cnt++;
-            isVirus[i] = true;
-            dfs(i);
-        }
-    }
-}
+void dfs(int);
 
 int main(){
     cin.tie(NULL);
@@ -40,4 +28,18 @@ int main(){
     cout << cnt << "\n";
 
     return 0;
+}
+
+void dfs(int idx){
+    if(idx == N){
+        return;
+    }
+
+    for(int i = 0; i < N; i++){
+        if(computer[idx][i] && !isVirus[i]){
+            cnt++;
+            isVirus[i] = true;
+            dfs(i);
+        }
+    }
 }
