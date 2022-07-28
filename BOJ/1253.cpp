@@ -19,19 +19,23 @@ int main(){
 
     int cnt = 0;
     for(int i = 0; i < N; i++){
-        long long target = nums[i];
-
-        vector<long long> temp = nums;
-        temp.erase(temp.begin() + i);
-
         int fromL = 0;
-        int fromR = N - 2;
+        int fromR = N - 1;
         while(fromL < fromR){
-            long long sum = temp[fromL] + temp[fromR];
-
-            if(sum > target){
+            if(fromL == i){
+                fromL++;
+                continue;
+            }
+            if(fromR == i){
                 fromR--;
-            }else if(sum < target){
+                continue;
+            }
+
+            long long sum = nums[fromL] + nums[fromR];
+
+            if(sum > nums[i]){
+                fromR--;
+            }else if(sum < nums[i]){
                 fromL++;
             }else{
                 cnt++;
