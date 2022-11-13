@@ -19,7 +19,6 @@ int main(){
         cnt[6]++;
     }
     cnt[6] = (cnt[6] + cnt[9]) / 2;
-
     cnt[9] = cnt[6];
 
     int ans = *max_element(cnt.begin(), cnt.end());
